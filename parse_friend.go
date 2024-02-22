@@ -8,11 +8,11 @@ import (
 	genreq "github.com/golden-vcr/schemas/generation-requests"
 )
 
-var regexClipArtPrefix = regexp.MustCompile(`(?i)^!?clip(?:[- ]?art)?s?(?: of)?( an?| the)? (.+)$`)
+var regexFriendPrefix = regexp.MustCompile(`(?i)^friends?(?: who| that| of)?(?:'s|'re| is| are)?( an?| the)? (.+)$`)
 
-func parseClipArtInputs(s string, randomValue int) *genreq.ImageInputsClipArt {
-	// Require that the string starts with 'clip art', 'clip-art', 'clipart', etc.
-	m := regexClipArtPrefix.FindStringSubmatch(s)
+func parseFriendInputs(s string, randomValue int) *genreq.ImageInputsFriend {
+	// Require that the string starts with 'friend' or 'friends'
+	m := regexFriendPrefix.FindStringSubmatch(s)
 	if m == nil {
 		return nil
 	}
@@ -33,6 +33,9 @@ func parseClipArtInputs(s string, randomValue int) *genreq.ImageInputsClipArt {
 	// has no color name, e.g. 'an orange fish' will produce a color of 'orange' and a
 	// subject of 'a fish')
 	article := strings.TrimSpace(m[1])
+	if article == "" {
+		article = "a"
+	}
 	if article != "" {
 		if article == "a" && beginsWithVowel(subject) {
 			article = "an"
@@ -42,7 +45,7 @@ func parseClipArtInputs(s string, randomValue int) *genreq.ImageInputsClipArt {
 		subject = fmt.Sprintf("%s %s", article, subject)
 	}
 
-	return &genreq.ImageInputsClipArt{
+	return &genreq.ImageInputsFriend{
 		Color:   color,
 		Subject: subject,
 	}

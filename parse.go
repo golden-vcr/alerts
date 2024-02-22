@@ -22,13 +22,13 @@ func ParseRequest(s string) (genreq.RequestType, *genreq.Payload, error) {
 		}, nil
 	}
 
-	clipArtInputs := parseClipArtInputs(s, rand.Int())
-	if clipArtInputs != nil {
+	friendInputs := parseFriendInputs(s, rand.Int())
+	if friendInputs != nil {
 		return genreq.RequestTypeImage, &genreq.Payload{
 			Image: &genreq.PayloadImage{
-				Style: genreq.ImageStyleClipArt,
+				Style: genreq.ImageStyleFriend,
 				Inputs: genreq.ImageInputs{
-					ClipArt: clipArtInputs,
+					Friend: friendInputs,
 				},
 			},
 		}, nil

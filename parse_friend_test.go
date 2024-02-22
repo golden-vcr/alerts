@@ -7,42 +7,42 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_parseClipArtInputs(t *testing.T) {
+func Test_parseFriendInputs(t *testing.T) {
 	tests := []struct {
 		s    string
-		want *genreq.ImageInputsClipArt
+		want *genreq.ImageInputsFriend
 	}{
 		{
-			"clip art of a blue seal",
-			&genreq.ImageInputsClipArt{
+			"friend blue seal",
+			&genreq.ImageInputsFriend{
 				Color:   genreq.ColorBlue,
 				Subject: "a seal",
 			},
 		},
 		{
-			"clipArt of a snail",
-			&genreq.ImageInputsClipArt{
+			"friend who's a snail",
+			&genreq.ImageInputsFriend{
 				Color:   genreq.ColorPurple,
 				Subject: "a snail",
 			},
 		},
 		{
-			"clip-arts of the Orange-Yellow sun setting over Canada",
-			&genreq.ImageInputsClipArt{
+			"friends the Orange-Yellow sun setting over Canada",
+			&genreq.ImageInputsFriend{
 				Color:   genreq.ColorYellowOrange,
 				Subject: "the sun setting over Canada",
 			},
 		},
 		{
-			"clip art of an orange fish",
-			&genreq.ImageInputsClipArt{
+			"friend who is an orange fish",
+			&genreq.ImageInputsFriend{
 				Color:   genreq.ColorOrange,
 				Subject: "a fish",
 			},
 		},
 		{
-			"clip art of a green orangutan",
-			&genreq.ImageInputsClipArt{
+			"friend green orangutan",
+			&genreq.ImageInputsFriend{
 				Color:   genreq.ColorGreen,
 				Subject: "an orangutan",
 			},
@@ -58,7 +58,7 @@ func Test_parseClipArtInputs(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.s, func(t *testing.T) {
-			got := parseClipArtInputs(tt.s, 11)
+			got := parseFriendInputs(tt.s, 11)
 			assert.Equal(t, tt.want, got)
 		})
 	}
