@@ -5,11 +5,13 @@ import (
 	"math/rand"
 
 	genreq "github.com/golden-vcr/schemas/generation-requests"
+	eonscreen "github.com/golden-vcr/schemas/onscreen-events"
 )
 
-var ErrNoRequest = errors.New("not a generation request")
+var ErrNoGenerationRequest = errors.New("not a generation request")
+var ErrNoStaticAlert = errors.New("no static alerts")
 
-func ParseRequest(s string) (genreq.RequestType, *genreq.Payload, error) {
+func ParseGenerationRequest(s string) (genreq.RequestType, *genreq.Payload, error) {
 	ghostInputs := parseGhostInputs(s)
 	if ghostInputs != nil {
 		return genreq.RequestTypeImage, &genreq.Payload{
@@ -34,5 +36,17 @@ func ParseRequest(s string) (genreq.RequestType, *genreq.Payload, error) {
 		}, nil
 	}
 
-	return "", nil, ErrNoRequest
+	return "", nil, ErrNoGenerationRequest
+}
+
+func ParseStaticAlert(s string) (*eonscreen.ImageDetailsStatic, error) {
+	imageId := parseStaticImageId(s)
+	if imageId != "" {
+		return &eonscreen.ImageDetailsStatic{
+			ImageId: imageId,
+			Message: s,
+		}, nil
+	}
+
+	return nil, ErrNoStaticAlert
 }
