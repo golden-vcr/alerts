@@ -34,6 +34,13 @@ func Test_ParseStaticAlert(t *testing.T) {
 			},
 		},
 		{
+			"I think you need to STAND BACK",
+			&eonscreen.ImageDetailsStatic{
+				ImageId: "stand-back",
+				Message: "I think you need to STAND BACK",
+			},
+		},
+		{
 			"none of these words are alert keywords",
 			nil,
 		},
