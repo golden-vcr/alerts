@@ -6,7 +6,7 @@ import (
 	genreq "github.com/golden-vcr/schemas/generation-requests"
 )
 
-var regexGhost = regexp.MustCompile(`(?i)^!?ghosts?(?: of)? (.+)$`)
+var regexGhost = regexp.MustCompile(`(?i)!?ghosts?(?: of)? (.+)$`)
 
 func parseGhostInputs(s string) *genreq.ImageInputsGhost {
 	m := regexGhost.FindStringSubmatch(s)

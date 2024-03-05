@@ -8,7 +8,7 @@ import (
 	genreq "github.com/golden-vcr/schemas/generation-requests"
 )
 
-var regexFriendPrefix = regexp.MustCompile(`(?i)^friends?(?: who| that| of)?(?:'s|'re| is| are)?( an?| the)? (.+)$`)
+var regexFriendPrefix = regexp.MustCompile(`(?i)friends?(?: who| that| of)?(?:'s|'re| is| are)?( an?| the)? (.+)$`)
 
 func parseFriendInputs(s string, randomValue int) *genreq.ImageInputsFriend {
 	// Require that the string starts with 'friend' or 'friends'

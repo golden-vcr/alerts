@@ -48,6 +48,13 @@ func Test_parseFriendInputs(t *testing.T) {
 			},
 		},
 		{
+			"Cheer200 I want a friend who is blue tomato",
+			&genreq.ImageInputsFriend{
+				Color:   genreq.ColorBlue,
+				Subject: "a tomato",
+			},
+		},
+		{
 			"chicken",
 			nil,
 		},

@@ -43,6 +43,12 @@ func Test_parseGhostInputs(t *testing.T) {
 			},
 		},
 		{
+			"Cheer200 ghost penguin",
+			&genreq.ImageInputsGhost{
+				Subject: "penguin",
+			},
+		},
+		{
 			"chicken",
 			nil,
 		},
